@@ -1,7 +1,13 @@
+// Start import statements
+
 import React,{useState} from 'react'
 import styles from '../styles/ContactDetails.module.css'
 import Link from 'next/link'
+import Head from 'next/head'
+
+//End of import statements
 export default function contactDetails(){
+
   //Start of hooks
 
   let [userName,setUserName]=useState('');
@@ -52,8 +58,12 @@ export default function contactDetails(){
   }
 
   //End of user defined functions
+
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Contact details</title>
+      </Head>
       <h1 className={styles.heading}>Contact details</h1>
       <label>Name: </label>
       <input type="text" onChange={handleNameChange} value={userName} placeholder="Name"/><br />
