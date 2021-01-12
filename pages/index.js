@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/ContactDetails.module.css'
+import Link from 'next/link'
 export default function contactDetails(){
   //Start of hooks
 
@@ -39,7 +40,7 @@ export default function contactDetails(){
     setUserPhone(e.target.value)
   }
 
-  function handleClick(e){
+  function storeDetails(e){
     e.preventDefault();
     setDetails({
       name:userName,
@@ -55,23 +56,16 @@ export default function contactDetails(){
     <div className={styles.container}>
       <h1 className={styles.heading}>Contact details</h1>
       <label>Name: </label>
-      <input type="text" onChange={handleNameChange} value={userName}/><br />
+      <input type="text" onChange={handleNameChange} value={userName} placeholder="Name"/><br />
       <label>Age: </label>
-      <input type="number" value={userAge} onChange={handleAgeChange}/><br />
+      <input type="number" value={userAge} onChange={handleAgeChange} placeholder="age"/><br />
       <label>Email: </label>
-      <input type="email" value={userEmail} onChange={handleEmailChange}/><br />
+      <input type="email" value={userEmail} onChange={handleEmailChange} placeholder="johangreeshum@gmail.com"/><br />
       <label>Phone number: </label>
-      <input type="number" value={userPhone} onChange={handlePhoneChange}/><br />
+      <input type="tel" value={userPhone} onChange={handlePhoneChange} placeholder="01234 56789"/><br />
       <label>Date of birth </label>
       <input type="date" value={userDob} onChange={handleDobChange}/><br />
-      <button type="button" onClick={handleClick}>OK</button>
-      <p className={styles.displayingArea}>
-        {details.name}
-        {details.age}
-        {details.email}
-        {details.phone}
-        {details.dob}
-      </p>
+      <Link href="/contacts"><button type="button">OK</button></Link>
     </div>
   )
 }
