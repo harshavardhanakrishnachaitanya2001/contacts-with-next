@@ -3,8 +3,11 @@
 import React,{useState} from 'react'
 import styles from '../styles/ContactDetails.module.css'
 import Head from 'next/head'
+import {myContextProvider} from '../components/MyContext'
+import Link from 'next/link'
 
 //End of import statements
+
 export default function contactDetails(){
 
   //Start of hooks
@@ -52,16 +55,17 @@ export default function contactDetails(){
       age:userAge,
       email:userEmail,
       phone:userPhone,
-      dob:userDob,
-      lableForName:'Name: ',
-      labelForAge:'Age: ',
-      labelForEmail:'Email: ',
-      labelForPhone: 'Phone number: ',
-      lableForDob: 'Date Of Birth: '
+      dob:userDob
     })
   }
 
   //End of user defined functions
+
+  //Sharing details object via context
+
+  <myContextProvider value={details} />
+
+  //End of context
 
   return (
     <div className={styles.container}>
@@ -80,13 +84,7 @@ export default function contactDetails(){
       <input type="tel" value={userPhone} onChange={handlePhoneChange} placeholder="01234 56789"/><br />
       <label>Date of birth </label>
       <input type="date" value={userDob} onChange={handleDobChange}/><br />
-      <button type="button" onClick={handleClick}>OK</button>
-
-        <p className={styles.firstDisplayArea}>{details.name?details.lableForName + details.name:''}</p>
-        <p className={styles.displayArea}>{details.age? details.labelForAge + details.age:''}</p>
-        <p className={styles.displayArea}>{details.email? details.labelForEmail + details.email: ''}</p>
-        <p className={styles.displayArea}>{details.phone? details.labelForPhone + details.phone: ''}</p>
-        <p className={styles.displayArea}>{details.dob? details.lableForDob + details.dob:''}</p>
+      <Link href="/contacts"><button type="button">OK</button></Link>
 
     </div>
   )
